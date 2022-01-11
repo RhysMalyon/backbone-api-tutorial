@@ -13,6 +13,75 @@
 
     <body>
         <div id="main"></div>
-        <script type="text/javascript"></script>
+        <div id="test"></div>
+
+        <script type="text/javascript">
+            // Create the Model
+            const Movie = Backbone.Model.extend({
+                initialize: function(options) {}
+            });
+
+            // Create the Collection
+            const Movies = Backbone.Collection.extend({
+                initialize: function(options) {}
+            });
+
+            // Create the View
+            const MovieView = Backbone.View.extend({
+                initialize: function(options) {
+                    this.movie = options.movie;
+                },
+
+                render: function() {
+                    this.$el.html(`
+                        <div class='name'>${this.movie.attributes.name}</div>
+                        <div class='year'>${this.movie.attributes.year}</div>
+                    `);
+                    return this;
+                }
+            });
+
+            // Create movie list View
+            const MoviesList = Backbone.View.extend({
+                initialize: function(options) {
+                    this.list = options.list;
+                    console.log(this.list)
+                },
+
+                render: function() {
+                    this.list.models.forEach(movie => {
+                        this.$el.append(`
+                            <div class='name'>${movie.attributes.name}</div>
+                            <div class='year'>${movie.attributes.year}</div>
+                        `);
+                        return this;
+                    })
+                }
+            })
+
+            // Instantiate the Model
+            const m1 = new Movie({
+                name: "Monty Python and the Holy Grail",
+                year: 1975
+            });
+
+            const m2 = new Movie({
+                name: 'The Meaning of Life',
+                year: 1983
+            });
+
+            // Instantiate the Collection
+            let myMovies = new Movies([m1, m2]);
+
+            // Instantiate the View
+            const movieView = new MovieView({ movie: m1 });
+            movieView.render();
+            $('#main').append(movieView.el);
+
+            // Inject movie list collection to the view
+            const movieList = new MoviesList({ list: myMovies });
+            movieList.render();
+            $('#test').append(movieList.el);
+        </script>
     </body>
 </html>
