@@ -19,8 +19,6 @@ MovieApp.Views.Search = Backbone.View.extend({
         movies.fetch({
             success: this.rendermovies.bind(this)
         });
-
-        console.log(movies)
     },
 
     rendermovies: function(movies){

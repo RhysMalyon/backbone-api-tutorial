@@ -10,7 +10,6 @@ MovieApp.Collections.Movies  = Backbone.Collection.extend({
     },
 
     parse: function(response){
-        console.log(response);
         return response.Search;
     }
 });
