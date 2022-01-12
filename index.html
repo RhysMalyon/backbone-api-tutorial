@@ -17,33 +17,7 @@
             <li><a href="#search">Search</a></li>
         </ul>
         <div id="main"></div>
-        <div id="test"></div>
 
-        <script type="text/javascript">
-            // Instantiate the Model
-            const m1 = new Movie({
-                name: "Monty Python and the Holy Grail",
-                year: 1975
-            });
-
-            const m2 = new Movie({
-                name: 'The Meaning of Life',
-                year: 1983
-            });
-
-            // Instantiate the Collection
-            let myMovies = new Movies([m1, m2]);
-
-            // Instantiate the View
-            const movieView = new MovieView({ movie: m1 });
-            movieView.render();
-            $('#main').append(movieView.el);
-
-            // Inject movie list collection to the view
-            const movieList = new MoviesList({ list: myMovies });
-            movieList.render();
-            $('#test').append(movieList.el);
-        </script>
         <script type="text/javascript" src="./js/App.js"></script>
         <script type="text/javascript" src="./js/models/Movie.js"></script>
         <script type="text/javascript" src="./js/collections/Movie.js"></script>

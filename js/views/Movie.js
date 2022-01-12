@@ -1,13 +1,22 @@
-MovieApp.Views.Movies = Backbone.View.extend({
-    initialize: function(options) {
-        this.movie = options.movie;
+MovieApp.Views.MovieView = Backbone.View.extend({
+    tagName: 'div',
+
+    initialize: function(options){
+        if (options.model) {
+            this.model = options.model
+        }
     },
 
     render: function() {
+        const moviePoster = this.model.attributes.Poster
+        const movieTitle = this.model.attributes.Title
+        const movieYear = this.model.attributes.Year
+
         this.$el.html(`
-            <div class='name'>${this.movie.attributes.name}</div>
-            <div class='year'>${this.movie.attributes.year}</div>
+            <img src="${moviePoster}" alt="${movieTitle}">
+            ${movieTitle} - ${movieYear}
         `);
+
         return this;
     }
 });
